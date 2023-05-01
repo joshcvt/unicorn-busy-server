@@ -318,6 +318,14 @@ def startupRainbow():
 	blinkThread = threading.Thread(target=displayRainbow, args=(1, 0.1, 1))
 	blinkThread.do_run = True
 	blinkThread.start()
+	sleepThread = threading.Thread(target=waitToSwitchOff, args=())
+	sleepThread.start()
+
+
+def waitToSwitchOff(secs=5):
+	# invoke this as its own thread to wait a certain amount of time, then grab the blinkThread and switch it off
+	sleep(secs)
+	return switchOff()
 
 
 if __name__ == '__main__':
